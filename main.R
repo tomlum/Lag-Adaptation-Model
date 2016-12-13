@@ -50,7 +50,7 @@ bimodal.stim2.lag = c(mapply(function(x){generateStim(.4, 1, rnorm(1, 1, SD))}, 
 far.consistent.stim2.lag = mapply(function(x){generateStim(.4, 10, rnorm(1, 10, SD))}, numeric(numTrials))
 
 #Change condition.vals to be any of the above variables
-condition.vals = bimodal.stim2.lag
+condition.vals = consistent.stim2.lag
 
 d <- data.frame(
   S1.obj = stim1.vals,
@@ -89,4 +89,4 @@ graph = ggplot(results, aes(x = 1:(numTrials)))+
   geom_line(aes(y = d$S2.expectation), colour = "yellow", size = (d$S2.certainty+1)*(d$S2.certainty+1)) + 
   theme(panel.background = element_rect(fill = 'gray')) + 
   xlim(1, numTrials-1)+ 
-  ylim(-2.5, 12.5)
+  ylim(-2.5, 2.5)
