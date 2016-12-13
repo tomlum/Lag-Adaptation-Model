@@ -44,9 +44,10 @@ stim1.vals = numeric(numTrials)
 
 #Types of Lags for stim2
 constant.stim2.lag = rep(1,numTrials)
-consistant.stim2.lag = mapply(function(x){generateStim(.4, 1, rnorm(1, 1, SD))}, numeric(numTrials))
-random.stim2.lag = mapply(function(x){rnorm(1, 0, SD)}, numeric(numTrials))
+consistent.stim2.lag = mapply(function(x){generateStim(.4, 1, rnorm(1, 1, SD))}, numeric(numTrials))
+random.stim2.lag = mapply(function(x){runif(1, -2,2)}, numeric(numTrials))
 bimodal.stim2.lag = c(mapply(function(x){generateStim(.4, 1, rnorm(1, 1, SD))}, numeric(numTrials/2)), mapply(function(x){generateStim(.4, -1, rnorm(1, -1, SD))}, numeric(numTrials/2)))
+far.consistent.stim2.lag = mapply(function(x){generateStim(.4, 10, rnorm(1, 10, SD))}, numeric(numTrials))
 
 #Change condition.vals to be any of the above variables
 condition.vals = bimodal.stim2.lag
@@ -88,4 +89,4 @@ graph = ggplot(results, aes(x = 1:(numTrials)))+
   geom_line(aes(y = d$S2.expectation), colour = "yellow", size = (d$S2.certainty+1)*(d$S2.certainty+1)) + 
   theme(panel.background = element_rect(fill = 'gray')) + 
   xlim(1, numTrials-1)+ 
-  ylim(-2.5, 2.5)
+  ylim(-2.5, 12.5)
